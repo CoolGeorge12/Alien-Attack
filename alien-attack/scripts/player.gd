@@ -12,5 +12,21 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -speed
 	if Input.is_action_pressed("move_down"):
 		velocity.y = speed
+	
 	move_and_slide()
-	print(velocity)
+	
+	var screen_size = get_viewport_rect().size
+	#if global_position.x < 0:
+		#global_position.x = 0
+	#if global_position.x > screen_size.x:
+		#global_position.x = screen_size.x
+	#if global_position.y < 0:
+		#global_position.y = 0
+	#if global_position.y > screen_size.y:
+		#global_position.y = screen_size.y
+	
+	#global_position.x = clampf(global_position.x, 0, screen_size.x)
+	#global_position.y = clampf(global_position.y, 0, screen_size.y)
+	
+	global_position = global_position.clamp(Vector2(0, 0), screen_size)
+	#print(global_position)
