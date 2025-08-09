@@ -11,5 +11,4 @@ func _physics_process(delta: float) -> void:
 	global_position.x += speed*delta
 
 func _on_screen_exited():
-	print("rocket exited screen")
 	queue_free()
