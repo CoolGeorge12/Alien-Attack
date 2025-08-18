@@ -22,7 +22,6 @@ func _on_deathzone_area_entered(area: Area2D) -> void:
 func _on_player_took_damage() -> void:
 	lives -= 1
 	hud.set_lives(lives)
-	score = score - 100
 	player_hit_sound.play()
 	if (lives == 0):
 		print("Game over")
@@ -42,3 +41,8 @@ func _on_enemy_died():
 	score += 100
 	hud.set_score_label(score)
 	enemy_hit_sound.play()
+
+
+func _on_enemy_spawner_path_enemy_spawned(path_enemy_instance: Variant) -> void:
+	add_child(path_enemy_instance)
+	path_enemy_instance.enemy.connect("died", _on_enemy_died)
